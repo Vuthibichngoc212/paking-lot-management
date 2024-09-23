@@ -8,8 +8,11 @@ import { Form, Formik } from "formik";
 import logo from "../../../../assets/images/logo.png";
 import { LoadingButton } from "@mui/lab";
 import FormikTextField from "../../../../components/common/FormElements/FormikTextField/FormikTextField";
-import { RegisterRequestBody } from "../../types/auth.types";
 import HeaderTitle from "../../../../components/layout/HeaderTitle/HeaderTitle";
+import { useRegisterUserMutation } from "../../../../redux/api/api.caller";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IUser } from "../../../../interfaces/users";
 
 interface RegisterProps {
   onToggleForm: (formName: string) => void;
@@ -20,8 +23,41 @@ const Register: React.FC<RegisterProps> = ({ onToggleForm }) => {
     resolver: yupResolver(registerSchema),
   });
 
+  const [addUserRegister] = useRegisterUserMutation();
+
+  const handleSubmit = async (
+    values: IUser,
+    setSubmitting: (isSubmitting: boolean) => void
+  ) => {
+    try {
+      await addUserRegister({
+        role: "user",
+        fullName: values.fullName,
+        email: values.email,
+        password: values.password,
+      }).unwrap();
+      toast.success("Đăng ký thành công!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        theme: "colored",
+      });
+      setTimeout(() => {
+        onToggleForm("login");
+      }, 2100);
+    } catch {
+      toast.error("Đăng ký không thành công kiểm tra lại", {
+        theme: "colored",
+        autoClose: 2000,
+        position: "bottom-right",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <FormProvider {...methods}>
+      <ToastContainer />
       <Box>
         <Grid container>
           <Card
@@ -57,15 +93,19 @@ const Register: React.FC<RegisterProps> = ({ onToggleForm }) => {
               />
               <Formik
                 initialValues={{
+                  role: "user",
                   fullName: "",
                   email: "",
                   password: "",
                   retypePassword: "",
                 }}
                 validationSchema={registerSchema}
-                onSubmit={(values: RegisterRequestBody) => {
-                  console.log(values);
-                }}
+                // onSubmit={(values: RegisterRequestBody) => {
+                //   console.log(values);
+                // }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleSubmit(values, setSubmitting)
+                }
               >
                 {({ values, setFieldValue, handleBlur }) => (
                   <Form>

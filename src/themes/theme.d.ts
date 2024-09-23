@@ -8,12 +8,18 @@ declare module "@mui/material/styles" {
     heading1_bold: React.CSSProperties;
     subbody2_regular: React.CSSProperties;
     heading2_semibold: React.CSSProperties;
+    title2: React.CSSProperties;
+    title3: React.CSSProperties;
+    body4: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     heading1_bold: React.CSSProperties;
     body2_regular: React.CSSProperties;
     heading2_semibold: React.CSSProperties;
+    title2: React.CSSProperties;
+    title3: React.CSSProperties;
+    body4: React.CSSProperties;
   }
 }
 
@@ -22,6 +28,9 @@ declare module "@mui/material/Typography" {
     heading1_bold: true;
     body2_regular: true;
     heading2_semibold: true;
+    title2: true;
+    title3: true;
+    body4: true;
   }
 }
 
@@ -30,6 +39,7 @@ declare module "@mui/material/styles" {
   interface PaletteColorOptions {
     coolGray?: string;
     midnightBlue?: string;
+    black?: string;
   }
 }
 
@@ -37,6 +47,7 @@ declare module "@mui/material/styles" {
   interface PaletteColor {
     coolGray?: string;
     midnightBlue?: string;
+    black?: string;
   }
 }
 
@@ -59,6 +70,21 @@ let theme = createTheme({
     fontFamily,
     allVariants: {
       fontFamily,
+    },
+    title2: {
+      fontFamily: "Inter",
+      fontSize: 24,
+      lineHeight: "2.8rem",
+    },
+    title3: {
+      fontFamily: "Inter-SemiBold",
+      fontSize: 20,
+      lineHeight: "2.4rem",
+    },
+    body4: {
+      fontWeight: 400,
+      fontSize: "1rem",
+      lineHeight: "1.5rem",
     },
     // heading1
     heading1_regular: {
@@ -123,6 +149,11 @@ let theme = createTheme({
       fontSize: 14,
       lineHeight: "1.8rem",
     },
+    body2: {
+      fontFamily: "Inter",
+      fontSize: 16,
+      lineHeight: "2rem",
+    },
   },
   palette: {
     primary: {
@@ -143,7 +174,7 @@ let theme = createTheme({
       lightApricot: "#FBD0AD",
       peachyOrange: "#F9AF78",
       orangeSalmon: "#F58342",
-      orangeTangerine: "#F26522",
+      orangeTangerine: "#485CC7",
       burntOrange: "#E34813",
       rustRed: "#BC3412",
       deepRed: "#962B16",
@@ -176,6 +207,7 @@ theme = createTheme(theme, {
         charcoalGray: "#42424A",
         darkCharcoalGray: "#3A3A40",
         deepCharcoal: "#141416",
+        black: "#19191A",
       },
       name: "neutral",
     }),
@@ -197,6 +229,23 @@ const primaryButtonStyle = {
   "&:focus": {
     outline: "none",
     boxShadow: "none",
+  },
+};
+
+const secondaryButtonStyle = {
+  border: "1px solid #485CC7",
+  color: "#485CC7",
+  backgroundColor: theme.palette.neutral.main,
+  padding: "0.8rem 1.6rem",
+  fontFamily: "Inter-bold",
+  borderRadius: "8px",
+  "&:hover": {
+    color: "#485CC7",
+    border: "1px solid  #485CC7",
+  },
+  "&:focus": {
+    border: "1px solid  #485CC7",
+    color: "#485CC7",
   },
 };
 
@@ -233,6 +282,31 @@ theme = createTheme(theme, {
             fontSize: "1.4rem",
             height: "4rem",
             ...primaryButtonStyle,
+          },
+        },
+        // variants for secondary button
+        {
+          props: { variant: "outlined", size: "large" },
+          style: {
+            fontSize: "1.6rem",
+            height: "4.4rem",
+            ...secondaryButtonStyle,
+          },
+        },
+        {
+          props: { variant: "outlined", size: "medium" },
+          style: {
+            fontSize: "1.4rem",
+            height: "4rem",
+            ...secondaryButtonStyle,
+          },
+        },
+        {
+          props: { variant: "outlined", size: "small" },
+          style: {
+            fontSize: "1.4rem",
+            height: "4rem",
+            ...secondaryButtonStyle,
           },
         },
       ],

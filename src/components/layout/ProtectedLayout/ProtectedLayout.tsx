@@ -2,29 +2,28 @@ import { Navigate, useOutlet } from "react-router-dom";
 
 import { Box, Stack } from "@mui/material";
 import styles from "./layouts.module.css";
-import { ROUTE_PATH } from "../../../constants/routePath.constant";
-// import SideBar from '../Sidebar/Sidebar';
-// import Header from '../Header/Header';
+import SideBar from "../SidebarLayout/SidebarLayout";
+import Header from "../Header/Header";
+// import { useAppSelector } from "../../../redux/store";
+// import { userSelector } from "../../../redux/features/users";
 
 function ProtectedLayout() {
   const outlet = useOutlet();
-  // const dispatch = useAppDispatch();
-  // const { user } = useAppSelector(selectUser);
-  const user = true;
+  // const user = useAppSelector(userSelector);
 
-  if (!user) {
-    return <Navigate to={ROUTE_PATH.AUTH.LOGIN} />;
-  }
+  // if (!user || user.length === 0) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <Box className={styles.container}>
-      {/* <SideBar /> */}
+      <SideBar />
       <Stack
         sx={{
           width: "100%",
         }}
       >
-        {/* <Header /> */}
+        <Header />
         <Stack
           sx={{
             margin: "4rem 0 0 0",

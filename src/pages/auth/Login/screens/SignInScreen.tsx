@@ -7,20 +7,64 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../helpers/validation-schema.helpers";
 import HeaderTitle from "../../../../components/layout/HeaderTitle/HeaderTitle";
-import { LoginRequestBody } from "../../types/auth.types";
 import FormikTextField from "../../../../components/common/FormElements/FormikTextField/FormikTextField";
+import { useLoginMutation } from "../../../../redux/api/api.caller";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IUser } from "../../../../interfaces/users";
+import { useNavigate } from "react-router-dom";
 
 interface SignInScreenProps {
   onToggleForm: (formName: string) => void;
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ onToggleForm }) => {
+  const navigate = useNavigate();
+
   const methods = useForm({
     resolver: yupResolver(loginSchema),
   });
 
+  const [loginUser] = useLoginMutation();
+
+  const handleSubmit = async (
+    values: IUser,
+    setSubmitting: (isSubmitting: boolean) => void
+  ) => {
+    try {
+      const response = await loginUser({
+        email: values.email,
+        password: values.password,
+      }).unwrap();
+
+      if (response) {
+        toast.success("Đăng nhập thành công!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+      } else {
+        throw new Error("Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Email hoặc mật khẩu không đúng!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        theme: "colored",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <FormProvider {...methods}>
+      <ToastContainer />
+
       <Box sx={{ maxHeight: "99vh" }}>
         <Grid container>
           <Card
@@ -55,12 +99,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ onToggleForm }) => {
                 }}
               />
               <Formik
-                initialValues={{ email: "", password: "" }}
+                initialValues={{ role: "", email: "", password: "" }}
                 validationSchema={loginSchema}
-                onSubmit={(values: LoginRequestBody) => {
-                  // handleSubmit(values);
-                  console.log(values);
-                }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleSubmit(values, setSubmitting)
+                }
               >
                 {({ values, setFieldValue, handleBlur }) => (
                   <Form>

@@ -5,8 +5,20 @@ export const ROUTE_PATH = {
   HOME: {
     INDEX: "/dashboard",
   },
-  AUTH: {
-    LOGIN: "/login",
+  BOOKEDUSER: {
+    INDEX: "/booked-user",
+  },
+  SPACEZONE: {
+    INDEX: "/space-zone",
+  },
+  PARKING: {
+    INDEX: "/parking",
+  },
+  TRANSACTION: {
+    INDEX: "/transactions",
+  },
+  USER: {
+    INDEX: "/user",
   },
   PROFILE: {
     INDEX: "/profile",

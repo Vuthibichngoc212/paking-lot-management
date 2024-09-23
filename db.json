@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "role": "user",
+      "name": "John",
+      "email": "john@gmail.com"
+    },
+    {
+      "id": "2",
+      "role": "user",
+      "name": "Jane",
+      "email": "jane@gmail.com"
+    },
+    {
+      "id": "3",
+      "role": "user",
+      "name": "Bob",
+      "email": "bob@gmail.com"
+    },
+    {
+      "id": "4",
+      "role": "admin",
+      "email": "admin@gmail.com",
+      "password": "123123",
+      "confirmPassword": "123123"
+    },
+    {
+      "id": "e89d",
+      "fullName": "abtest",
+      "email": "abtest@gmail.com",
+      "password": "111"
+    },
+    {
+      "id": "65aa",
+      "role": "user",
+      "fullName": "test01",
+      "email": "test01@gmail.com",
+      "password": "111"
+    },
+    {
+      "id": "a4ad",
+      "role": "user",
+      "fullName": "test02",
+      "email": "test02@gmail.com",
+      "password": "111"
+    },
+    {
+      "id": "d72d",
+      "role": "user",
+      "fullName": "test03",
+      "email": "test03@gmail.com",
+      "password": "111"
+    },
+    {
+      "id": "5deb",
+      "role": "user",
+      "fullName": "test05",
+      "email": "test05@gmail.com",
+      "password": "111"
+    },
+    {
+      "id": "d52c",
+      "role": "user",
+      "fullName": "ab",
+      "email": "ab@gmail.com",
+      "password": "111"
+    }
+  ]
+}
