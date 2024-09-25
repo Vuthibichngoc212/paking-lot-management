@@ -3,11 +3,16 @@ import { ROUTE_PATH } from "../constants/routePath.constant";
 import Auth from "../pages/auth";
 import BookedUser from "../pages/BookedUser/screens/BookedUser";
 import DashBoard from "../pages/home/screens/DashBoard";
+import HomePage from "../pages/HomePage/screens/HomePage";
 
 const routes = [
   {
     path: ROUTE_PATH.ROOT.INDEX,
     element: <Auth />,
+  },
+  {
+    path: ROUTE_PATH.HOMEPAGE.INDEX,
+    element: <HomePage />,
   },
   {
     path: ROUTE_PATH.HOME.INDEX,

@@ -5,6 +5,9 @@ export const ROUTE_PATH = {
   HOME: {
     INDEX: "/dashboard",
   },
+  HOMEPAGE: {
+    INDEX: "/home",
+  },
   BOOKEDUSER: {
     INDEX: "/booked-user",
   },
