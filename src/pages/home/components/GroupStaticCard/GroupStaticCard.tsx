@@ -18,6 +18,7 @@ const GroupStaticCard = () => {
       title: "Paking Spaces",
       value: 2,
       icon: accountCard,
+      
     },
     {
       title: "Today Income",
