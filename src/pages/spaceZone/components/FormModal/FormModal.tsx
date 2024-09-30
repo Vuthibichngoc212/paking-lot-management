@@ -5,7 +5,8 @@ import { Box, Grid } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CustomTextField from "../../../../components/common/FormElements/CustomTextField/CustomTextField";
 import { useEffect } from "react";
-import { pakingSchema } from "../helpers/validation-schema.helpers";
+import { spaceZoneSchema } from "../helpers/validation-schema.helpers";
+import { CustomSelectField } from "../../../../components/common/FormElements/CustomSelectField/CustomSelectField";
 
 const FormModal = ({
   isOpenModal,
@@ -16,9 +17,25 @@ const FormModal = ({
   initialData,
 }: any) => {
   const methods = useForm({
-    resolver: yupResolver(pakingSchema),
+    resolver: yupResolver(spaceZoneSchema),
     defaultValues: initialData || {},
   });
+
+  const optionsStatus = [
+    { value: "1", label: "Còn trống" },
+    { value: "2", label: "Đã sử dụng" },
+  ];
+
+  const mapStatusToValue = (status: string) => {
+    switch (status) {
+      case "Còn trống":
+        return "1";
+      case "Đã sử dụng":
+        return "2";
+      default:
+        return "";
+    }
+  };
 
   const handleSubmitForm = (data: any) => {
     console.log(data);
@@ -26,8 +43,12 @@ const FormModal = ({
 
   useEffect(() => {
     if (initialData) {
-      console.log(initialData);
-      methods.reset(initialData);
+      const normalizedData = {
+        ...initialData,
+        status: mapStatusToValue(initialData.status),
+      };
+
+      methods.reset(normalizedData);
     }
   }, [initialData, methods]);
 
@@ -46,7 +67,7 @@ const FormModal = ({
             <Grid item xs={6}>
               <CustomTextField
                 label="Tên bãi đỗ xe"
-                name="name"
+                name="slot"
                 control={methods.control}
                 required
               />
@@ -61,32 +82,8 @@ const FormModal = ({
             </Grid>
             <Grid item xs={6}>
               <CustomTextField
-                label="Tổng số chỗ đỗ"
-                name="totalCapacity"
-                control={methods.control}
-                required
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                label="Giá vé theo giờ"
-                name="priceHourly"
-                control={methods.control}
-                required
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                label="Giá vé theo ngày"
-                name="priceDaily"
-                control={methods.control}
-                required
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                label="Giá vé theo tháng"
-                name="priceMonthly"
+                label="Giá vé"
+                name="price"
                 control={methods.control}
                 required
               />
@@ -94,7 +91,7 @@ const FormModal = ({
             <Grid item xs={6}>
               <CustomTextField
                 label="Giờ mở cửa"
-                name="openTime"
+                name="check_in"
                 control={methods.control}
                 required
               />
@@ -102,7 +99,16 @@ const FormModal = ({
             <Grid item xs={6}>
               <CustomTextField
                 label="Giờ đóng cửa"
-                name="closeTime"
+                name="check_out"
+                control={methods.control}
+                required
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <CustomSelectField
+                label="Trạng thái"
+                name="status"
+                options={optionsStatus}
                 control={methods.control}
                 required
               />

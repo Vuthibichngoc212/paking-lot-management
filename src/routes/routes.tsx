@@ -1,9 +1,10 @@
 import ProtectedLayout from "../components/layout/ProtectedLayout/ProtectedLayout";
 import { ROUTE_PATH } from "../constants/routePath.constant";
 import Auth from "../pages/auth";
-import BookedUser from "../pages/BookedUser/screens/BookedUser";
+import PakingSpace from "../pages/BookedUser/screens/PakingSpace";
 import DashBoard from "../pages/home/screens/DashBoard";
 import HomePage from "../pages/HomePage/screens/HomePage";
+import SpaceZone from "../pages/spaceZone/screens/SpaceZone";
 
 const routes = [
   {
@@ -25,12 +26,22 @@ const routes = [
     ],
   },
   {
+    path: ROUTE_PATH.SPACEZONE.INDEX,
+    element: <ProtectedLayout />,
+    children: [
+      {
+        path: ROUTE_PATH.SPACEZONE.INDEX,
+        element: <SpaceZone />,
+      },
+    ],
+  },
+  {
     path: ROUTE_PATH.BOOKEDUSER.INDEX,
     element: <ProtectedLayout />,
     children: [
       {
         path: ROUTE_PATH.BOOKEDUSER.INDEX,
-        element: <BookedUser />,
+        element: <PakingSpace />,
       },
     ],
   },

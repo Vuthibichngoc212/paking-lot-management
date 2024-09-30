@@ -18,13 +18,3 @@ export const registerSchema = Yup.object().shape({
   password: Yup.string().required("Mật khẩu không được để trống"),
   retypePassword: Yup.string().required("Mật khẩu không được để trống"),
 });
-
-export const usersSchema = Yup.object().shape({
-  fullName: Yup.string().trim().required("Họ tên không được để trống"),
-  licensePlate: Yup.string()
-    .trim()
-    .required("Nhập biển số xe không được để trống"),
-  parkingSlot: Yup.string()
-    .trim()
-    .required("Khu vực đỗ xe không được để trống"),
-});
