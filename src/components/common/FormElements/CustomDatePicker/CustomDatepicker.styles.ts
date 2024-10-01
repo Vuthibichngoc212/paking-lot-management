@@ -2,7 +2,9 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
   textFieldRoot: {
-    "& .MuiFormHelperText-root": {},
+    "& .MuiFormHelperText-root": {
+      marginLeft: 0,
+    },
   },
   test: {
     "& > div.MuiInputBase-root:forcus": {
@@ -20,5 +22,10 @@ export const useStyles = makeStyles(() => ({
 
     width: "100%",
     height: "100%",
+  },
+  DatePickerSize: {
+    "& .MuiInputBase-root": {
+      height: "3.1rem",
+    },
   },
 }));

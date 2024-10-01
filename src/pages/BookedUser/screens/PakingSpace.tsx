@@ -15,10 +15,13 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FormModal from "../components/FormModal/FormModal";
+import HeaderTitle from "../../../components/layout/HeaderTitle/HeaderTitle";
+import SearchInput from "../../../components/layout/SearchInput/SearchInput";
 
 const BookedUser = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedData, setSelectedData] = useState<any>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const rows = [
     {
@@ -56,8 +59,15 @@ const BookedUser = () => {
     },
   ];
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term.toLowerCase());
+  };
+
+  const filteredRows = rows.filter((row) =>
+    row.name.toLowerCase().includes(searchTerm)
+  );
+
   const handleEdit = (id: any) => {
-    console.log(id);
     console.log(`Edit row with ID: ${id}`);
     const normalizedData = {
       ...id,
@@ -78,18 +88,34 @@ const BookedUser = () => {
 
   return (
     <Box>
-      <Button
-        variant="contained"
-        size="medium"
-        startIcon={<AddIcon />}
-        onClick={() => {
-          setSelectedData(null);
-          setIsOpenModal(true);
+      <HeaderTitle
+        title="Quản lý toàn bộ bãi đỗ"
+        customStyles={{ marginBottom: "2.4rem" }}
+      />
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
         }}
-        sx={{ marginBottom: "20px" }}
       >
-        Thêm người dùng
-      </Button>
+        <SearchInput
+          handleSearch={handleSearch}
+          customStyles={{ width: "300px" }}
+        />
+        <Button
+          variant="contained"
+          size="medium"
+          startIcon={<AddIcon />}
+          onClick={() => {
+            setSelectedData(null);
+            setIsOpenModal(true);
+          }}
+        >
+          Thêm người dùng
+        </Button>
+      </Box>
 
       <TableContainer component={Paper} sx={{ maxHeight: 400 }}>
         <Table>
@@ -195,7 +221,7 @@ const BookedUser = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {filteredRows.map((row, index) => (
               <TableRow
                 key={row.id}
                 sx={{

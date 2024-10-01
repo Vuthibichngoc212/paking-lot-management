@@ -6,8 +6,9 @@ import DashBoard from "../pages/home/screens/DashBoard";
 import HomePage from "../pages/HomePage/screens/HomePage";
 import SpaceZone from "../pages/spaceZone/screens/SpaceZone";
 import UserManagement from "../pages/UserManagement/screens/UserManagement";
-import Statistics from "../pages/Statistics/screens/Statistics"; 
-import Transaction from "../pages/Transction/screens/Transaction"; 
+import Statistics from "../pages/Statistics/screens/Statistics";
+import Transaction from "../pages/Transction/screens/Transaction";
+import ProfileInfo from "../pages/profile/screens/ProfileInfo";
 
 const routes = [
   {
@@ -49,12 +50,12 @@ const routes = [
     ],
   },
   {
-    path: ROUTE_PATH.USER_MANAGEMENT.INDEX,  
+    path: ROUTE_PATH.USER_MANAGEMENT.INDEX,
     element: <ProtectedLayout />,
     children: [
       {
         path: ROUTE_PATH.USER_MANAGEMENT.INDEX,
-        element: <UserManagement />,  
+        element: <UserManagement />,
       },
     ],
   },
@@ -64,18 +65,27 @@ const routes = [
     children: [
       {
         path: ROUTE_PATH.STATISTICS.INDEX,
-        element: <Statistics />,  
+        element: <Statistics />,
       },
     ],
   },
-  // Thêm Transaction vào routes
   {
     path: ROUTE_PATH.TRANSACTION.INDEX,
     element: <ProtectedLayout />,
     children: [
       {
         path: ROUTE_PATH.TRANSACTION.INDEX,
-        element: <Transaction />,  
+        element: <Transaction />,
+      },
+    ],
+  },
+  {
+    path: ROUTE_PATH.PROFILE.INDEX,
+    element: <ProtectedLayout />,
+    children: [
+      {
+        path: ROUTE_PATH.PROFILE.INDEX,
+        element: <ProfileInfo />,
       },
     ],
   },

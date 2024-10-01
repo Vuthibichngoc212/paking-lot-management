@@ -1,11 +1,18 @@
-import React from "react";
-import { Modal, Button, TextField, Box } from "@mui/material";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect } from "react";
+import { Box, Grid } from "@mui/material";
+import CustomTextField from "../../../components/common/FormElements/CustomTextField/CustomTextField";
+import { FormProvider, useForm } from "react-hook-form";
+import CRUDModal from "../../../components/common/Modal/CRUDModal/CRUDModal";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { userpakingSchema } from "../helpers/validation-schema.helpers";
+import { CustomSelectField } from "../../../components/common/FormElements/CustomSelectField/CustomSelectField";
 
 interface UserParking {
   name: string;
-  licensePlate: string; 
-  parkingSlot: string; 
-  checkInTime: string; 
+  licensePlate: string;
+  parkingSlot: string;
+  checkInTime: string;
 }
 
 interface FormModalProps {
@@ -14,7 +21,7 @@ interface FormModalProps {
   headerTitle: string;
   cancelButtonLabel: string;
   submitButtonLabel: string;
-  initialData?: UserParking | null; 
+  initialData?: UserParking | null;
 }
 
 const FormModal: React.FC<FormModalProps> = ({
@@ -24,58 +31,97 @@ const FormModal: React.FC<FormModalProps> = ({
   cancelButtonLabel,
   submitButtonLabel,
   initialData = null,
-}) => {
-  const handleSubmit = () => {
-    console.log("Data saved", initialData);
+}: any) => {
+  const methods = useForm({
+    resolver: yupResolver(userpakingSchema),
+    defaultValues: initialData || {},
+  });
+
+  const handleSubmitForm = () => {
     setIsOpenModal(false);
   };
+  const optionsStatus = [
+    { value: "1", label: "Đang đỗ" },
+    { value: "2", label: "Đã thanh toán" },
+  ];
+
+  const mapStatusToValue = (status: string) => {
+    switch (status) {
+      case "Đang đỗ":
+        return "1";
+      case "Đã thanh toán":
+        return "2";
+      default:
+        return "";
+    }
+  };
+
+  useEffect(() => {
+    if (initialData) {
+      const normalizedData = {
+        ...initialData,
+        status: mapStatusToValue(initialData.status),
+      };
+
+      methods.reset(normalizedData);
+    }
+  }, [initialData, methods]);
 
   return (
-    <Modal open={isOpenModal} onClose={() => setIsOpenModal(false)}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          bgcolor: "background.paper",
-          p: 4,
-          borderRadius: "8px",
-        }}
-      >
-        <h2>{headerTitle}</h2>
-        <TextField
-          fullWidth
-          label="Tên người dùng"
-          defaultValue={initialData?.name || ""}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Biển số xe"
-          defaultValue={initialData?.licensePlate || ""}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Chỗ đỗ xe"
-          defaultValue={initialData?.parkingSlot || ""}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Giờ vào"
-          defaultValue={initialData?.checkInTime || ""}
-          margin="normal"
-        />
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-          <Button onClick={() => setIsOpenModal(false)}>{cancelButtonLabel}</Button>
-          <Button onClick={handleSubmit} variant="contained">
-            {submitButtonLabel}
-          </Button>
+    <CRUDModal
+      isOpenModal={isOpenModal}
+      setIsOpenModal={setIsOpenModal}
+      headerTitle={headerTitle}
+      cancelButtonLabel={cancelButtonLabel}
+      submitButtonLabel={submitButtonLabel}
+      onSubmit={methods.handleSubmit(handleSubmitForm)}
+    >
+      <FormProvider {...methods}>
+        <Box sx={{ width: "60rem" }}>
+          <CustomTextField
+            label="Tên người dùng"
+            name="name"
+            control={methods.control}
+            required
+          />
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <CustomTextField
+                label="Biển số xe"
+                name="licensePlate"
+                control={methods.control}
+                required
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                label="Chỗ đỗ xe"
+                name="parkingSlot"
+                control={methods.control}
+                required
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                label="Giờ vào"
+                name="checkInTime"
+                control={methods.control}
+                required
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <CustomSelectField
+                label="Trạng thái"
+                name="status"
+                options={optionsStatus}
+                control={methods.control}
+                required
+              />
+            </Grid>
+          </Grid>
         </Box>
-      </Box>
-    </Modal>
+      </FormProvider>
+    </CRUDModal>
   );
 };
 

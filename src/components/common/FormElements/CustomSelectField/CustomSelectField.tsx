@@ -104,7 +104,7 @@ export function CustomSelectField({
             ))}
           </Select>
           {error && (
-            <FormHelperText sx={{ color: "#d32f2f" }}>
+            <FormHelperText sx={{ color: "#d32f2f", fontSize: "12px" }}>
               {error.message}
             </FormHelperText>
           )}

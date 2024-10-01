@@ -101,8 +101,8 @@ const Header = () => {
                   onClick={() => {
                     if (setting.label === "Đăng xuất") {
                       handleLogout(); // Gọi hàm xử lý đăng xuất
-                    } else if (setting.path) {
-                      navigate(setting.path); // Điều hướng tới trang khác
+                    } else if (setting.path === "/profile") {
+                      navigate("/profile");
                     }
                     handleCloseUserMenu();
                   }}

@@ -2,12 +2,11 @@
 import { ROUTE_PATH } from "../constants/routePath.constant";
 import overview from "./../assets/icons/overview.svg?react";
 import setting from "./../assets/icons/setting.svg?react";
-import map from "./../assets/icons//map_space.svg?react";
 import spacezone from "./../assets/icons/spacezone.svg?react";
 import transction from "./../assets/icons/transction.svg?react";
 import usermanagement from "./../assets/icons/userbooks.svg?react";
 import users from "./../assets/icons/user-manager.svg?react";
-import statisticsIcon from "./../assets/icons/statistics.svg?react"; 
+import statisticsIcon from "./../assets/icons/statistics.svg?react";
 
 export const sidebarRoutes = [
   {
@@ -32,13 +31,6 @@ export const sidebarRoutes = [
     children: [],
   },
   {
-    path: ROUTE_PATH.PARKING.INDEX,
-    name: "Chỗ đậu xe",
-    label: "map",
-    icon: map,
-    children: [],
-  },
-  {
     path: ROUTE_PATH.USER_MANAGEMENT.INDEX,
     name: "Quản lý người dùng",
     label: "usermanagement",
@@ -49,7 +41,7 @@ export const sidebarRoutes = [
     path: ROUTE_PATH.STATISTICS.INDEX,
     name: "Thống Kê",
     label: "statistics",
-    icon: statisticsIcon,  
+    icon: statisticsIcon,
     children: [],
   },
   {

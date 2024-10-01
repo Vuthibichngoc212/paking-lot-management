@@ -37,8 +37,9 @@ const FormModal = ({
     }
   };
 
-  const handleSubmitForm = (data: any) => {
-    console.log(data);
+  const handleSubmitForm = () => {
+    // console.log(data);
+    setIsOpenModal(false);
   };
 
   useEffect(() => {

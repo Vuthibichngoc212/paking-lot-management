@@ -17,11 +17,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import FormModal from "../components/FormModal/FormModal";
 import DeletePopUp from "../../../components/layout/DeletePopUp/DeletePopUp";
+import HeaderTitle from "../../../components/layout/HeaderTitle/HeaderTitle";
+import SearchInput from "../../../components/layout/SearchInput/SearchInput";
 
 const SpaceZone = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedData, setSelectedData] = useState<any>(null);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const [selectedDeleteId, setSelectedDeleteId] = useState<number | null>(null);
   const rows = [
     {
@@ -92,25 +97,42 @@ const SpaceZone = () => {
 
   const handleConfirmDelete = () => {
     console.log(`Deleting row with ID: ${selectedDeleteId}`);
-    // Xử lý logic xóa tại đây (ví dụ: gọi API xóa dữ liệu)
+    setIsDeletePopupOpen(false);
+  };
 
-    setIsDeletePopupOpen(false); // Đóng popup sau khi xóa
+  const handleSearch = (term: string) => {
+    setSearchTerm(term.toLowerCase());
   };
 
   return (
     <Box>
-      <Button
-        variant="contained"
-        size="medium"
-        startIcon={<AddIcon />}
-        onClick={() => {
-          setSelectedData(null);
-          setIsOpenModal(true);
+      <HeaderTitle
+        title="Quản lý bãi đỗ"
+        customStyles={{ marginBottom: "2.4rem" }}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
         }}
-        sx={{ marginBottom: "20px" }}
       >
-        Thêm bãi đỗ
-      </Button>
+        <SearchInput
+          handleSearch={handleSearch}
+          customStyles={{ width: "300px" }}
+        />
+        <Button
+          variant="contained"
+          size="medium"
+          startIcon={<AddIcon />}
+          onClick={() => {
+            setSelectedData(null);
+            setIsOpenModal(true);
+          }}
+          sx={{ marginBottom: "20px" }}
+        >
+          Thêm bãi đỗ
+        </Button>
+      </Box>
 
       <TableContainer component={Paper} sx={{ maxHeight: 400 }}>
         <Table>

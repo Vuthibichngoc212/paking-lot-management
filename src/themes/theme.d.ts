@@ -8,6 +8,7 @@ declare module "@mui/material/styles" {
     heading1_bold: React.CSSProperties;
     subbody2_regular: React.CSSProperties;
     heading2_semibold: React.CSSProperties;
+    title1: React.CSSProperties;
     title2: React.CSSProperties;
     title3: React.CSSProperties;
     body4: React.CSSProperties;
@@ -17,6 +18,7 @@ declare module "@mui/material/styles" {
     heading1_bold: React.CSSProperties;
     body2_regular: React.CSSProperties;
     heading2_semibold: React.CSSProperties;
+    title1: React.CSSProperties;
     title2: React.CSSProperties;
     title3: React.CSSProperties;
     body4: React.CSSProperties;
@@ -28,6 +30,7 @@ declare module "@mui/material/Typography" {
     heading1_bold: true;
     body2_regular: true;
     heading2_semibold: true;
+    title1: true;
     title2: true;
     title3: true;
     body4: true;
@@ -70,6 +73,12 @@ let theme = createTheme({
     fontFamily,
     allVariants: {
       fontFamily,
+    },
+    title1: {
+      fontFamily: "Inter",
+      fontSize: 24,
+      lineHeight: "2.8rem",
+      fontWeight: 600,
     },
     title2: {
       fontFamily: "Inter",

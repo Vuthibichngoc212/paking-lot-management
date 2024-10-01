@@ -18,13 +18,16 @@ export const ROUTE_PATH = {
     INDEX: "/parking",
   },
   TRANSACTION: {
-    INDEX: "/transaction", 
+    INDEX: "/transaction",
   },
   USER_MANAGEMENT: {
     INDEX: "/user-management",
   },
   STATISTICS: {
-    INDEX: "/statistics",  
+    INDEX: "/statistics",
+  },
+  PROFILE: {
+    INDEX: "/profile",
   },
   SETTING: {
     INDEX: "/settings",
