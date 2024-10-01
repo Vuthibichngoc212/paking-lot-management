@@ -5,6 +5,7 @@ import PakingSpace from "../pages/BookedUser/screens/PakingSpace";
 import DashBoard from "../pages/home/screens/DashBoard";
 import HomePage from "../pages/HomePage/screens/HomePage";
 import SpaceZone from "../pages/spaceZone/screens/SpaceZone";
+import UserManagement from "../pages/UserManagement/screens/UserManagement";
 
 const routes = [
   {
@@ -42,6 +43,16 @@ const routes = [
       {
         path: ROUTE_PATH.BOOKEDUSER.INDEX,
         element: <PakingSpace />,
+      },
+    ],
+  },
+  {
+    path: ROUTE_PATH.USER_MANAGEMENT.INDEX,  // Đường dẫn cho trang Quản lý người dùng
+    element: <ProtectedLayout />,
+    children: [
+      {
+        path: ROUTE_PATH.USER_MANAGEMENT.INDEX,
+        element: <UserManagement />,  // Thêm component quản lý người dùng
       },
     ],
   },

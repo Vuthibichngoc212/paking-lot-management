@@ -6,6 +6,7 @@ import map from "./../assets/icons//map_space.svg?react";
 import spacezone from "./../assets/icons/spacezone.svg?react";
 import transction from "./../assets/icons/transction.svg?react";
 import usermanagement from "./../assets/icons/userbooks.svg?react";
+import users from "./../assets/icons/userbooks.svg?react";
 
 export const sidebarRoutes = [
   {
@@ -34,6 +35,13 @@ export const sidebarRoutes = [
     name: "Chỗ đậu xe",
     label: "map",
     icon: map,
+    children: [],
+  },
+  {
+    path: ROUTE_PATH.USER_MANAGEMENT.INDEX, 
+    name: "Quản lý người dùng",
+    label: "usermanagement",
+    icon: users,
     children: [],
   },
   {

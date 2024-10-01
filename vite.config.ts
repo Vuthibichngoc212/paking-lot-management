@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import viteTsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 import svgr from "vite-plugin-svgr";
-// https://vitejs.dev/config/
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
@@ -34,6 +34,9 @@ export default defineConfig(({ mode }) => {
     },
     esbuild: {
       drop: mode !== "development" ? ["console", "debugger"] : [],
+    },
+    build: {
+      sourcemap: true,  // Bật source map cho tất cả môi trường
     },
   };
 });

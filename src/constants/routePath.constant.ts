@@ -29,7 +29,9 @@ export const ROUTE_PATH = {
   SETTING: {
     INDEX: "/settings",
   },
-
+  USER_MANAGEMENT: {  
+    INDEX: "/user-management", 
+  },
   NOTFOUND: {
     INDEX: "*",
   },
