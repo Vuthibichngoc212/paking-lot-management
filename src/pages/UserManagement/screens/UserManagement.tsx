@@ -23,7 +23,7 @@ import {
     licensePlate: string;
     parkingSlot: string; 
     checkInTime: string; 
-    status: "Đã đỗ" | "Chưa đỗ"; 
+    status: "Đang đỗ" | "Đã thanh toán"; 
   }
   
   const UserManagement = () => {
@@ -39,7 +39,7 @@ import {
         licensePlate: "30A-12345",
         parkingSlot: "Số 1",
         checkInTime: "08:00",
-        status: "Đã đỗ",
+        status: "Đang đỗ",
       },
       {
         id: 2,
@@ -47,7 +47,7 @@ import {
         licensePlate: "29B-67890",
         parkingSlot: "Số 2",
         checkInTime: "09:30",
-        status: "Chưa đỗ",
+        status: "Đã thanh toán",
       },
       {
         id: 3,
@@ -55,7 +55,7 @@ import {
         licensePlate: "31C-54321",
         parkingSlot: "Số 3",
         checkInTime: "07:45",
-        status: "Đã đỗ",
+        status: "Đang đỗ",
       },
     ];
   
@@ -183,7 +183,7 @@ import {
                   <TableCell align="center" sx={{ fontSize: "14px" }}>
                     <Typography
                       sx={{
-                        color: row.status === "Đã đỗ" ? "#00A03E" : "#DB2828",
+                        color: row.status === "Đang đỗ" ? "#00A03E" : "#DB2828",
                       }}
                       variant="body2"
                     >
