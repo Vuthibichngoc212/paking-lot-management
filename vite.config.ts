@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
       drop: mode !== "development" ? ["console", "debugger"] : [],
     },
     build: {
-      sourcemap: true,  // Bật source map cho tất cả môi trường
+      sourcemap: true,  
     },
   };
 });
