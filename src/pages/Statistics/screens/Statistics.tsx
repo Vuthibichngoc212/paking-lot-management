@@ -51,13 +51,16 @@ const StatisticsChart = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="time" />
         
+        {/* Trục Y cho các giá trị lớn như Doanh thu */}
         <YAxis yAxisId="left" />
         
+        {/* Trục Y cho các giá trị nhỏ như Số xe ra vào, Số lượng chỗ trống */}
         <YAxis yAxisId="right" orientation="right" />
         
         <Tooltip />
         <Legend />
         
+        {/* Các đường dữ liệu */}
         <Line yAxisId="right" type="monotone" dataKey="carInOut" stroke="#8884d8" activeDot={{ r: 8 }} name="Số lượng xe ra/vào" />
         <Line yAxisId="right" type="monotone" dataKey="avgParkingTime" stroke="#82ca9d" name="Thời gian đỗ xe trung bình (phút)" />
         <Line yAxisId="right" type="monotone" dataKey="parkingRate" stroke="#ffc658" name="Tỉ lệ đỗ xe (%)" />
