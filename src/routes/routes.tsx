@@ -6,7 +6,6 @@ import DashBoard from "../pages/home/screens/DashBoard";
 import HomePage from "../pages/HomePage/screens/HomePage";
 import SpaceZone from "../pages/spaceZone/screens/SpaceZone";
 import UserManagement from "../pages/UserManagement/screens/UserManagement";
-import Statistics from "../pages/Statistics/screens/Statistics";
 import Transaction from "../pages/Transction/screens/Transaction";
 import ProfileInfo from "../pages/profile/screens/ProfileInfo";
 
@@ -56,16 +55,6 @@ const routes = [
       {
         path: ROUTE_PATH.USER_MANAGEMENT.INDEX,
         element: <UserManagement />,
-      },
-    ],
-  },
-  {
-    path: ROUTE_PATH.STATISTICS.INDEX,
-    element: <ProtectedLayout />,
-    children: [
-      {
-        path: ROUTE_PATH.STATISTICS.INDEX,
-        element: <Statistics />,
       },
     ],
   },

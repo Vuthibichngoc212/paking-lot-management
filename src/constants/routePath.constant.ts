@@ -23,9 +23,6 @@ export const ROUTE_PATH = {
   USER_MANAGEMENT: {
     INDEX: "/user-management",
   },
-  STATISTICS: {
-    INDEX: "/statistics",
-  },
   PROFILE: {
     INDEX: "/profile",
   },
