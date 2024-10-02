@@ -44,7 +44,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ onToggleForm }) => {
           theme: "colored",
         });
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/home");
         }, 2000);
       } else {
         throw new Error("Invalid credentials");
