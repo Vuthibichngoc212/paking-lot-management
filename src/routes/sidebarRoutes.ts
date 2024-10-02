@@ -6,7 +6,6 @@ import spacezone from "./../assets/icons/spacezone.svg?react";
 import transction from "./../assets/icons/transction.svg?react";
 import usermanagement from "./../assets/icons/userbooks.svg?react";
 import users from "./../assets/icons/user-manager.svg?react";
-import statisticsIcon from "./../assets/icons/statistics.svg?react";
 
 export const sidebarRoutes = [
   {
@@ -35,13 +34,6 @@ export const sidebarRoutes = [
     name: "Quản lý người dùng",
     label: "usermanagement",
     icon: users,
-    children: [],
-  },
-  {
-    path: ROUTE_PATH.STATISTICS.INDEX,
-    name: "Thống Kê",
-    label: "statistics",
-    icon: statisticsIcon,
     children: [],
   },
   {

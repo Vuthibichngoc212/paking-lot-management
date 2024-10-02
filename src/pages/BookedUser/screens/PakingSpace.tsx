@@ -59,8 +59,10 @@ const BookedUser = () => {
     },
   ];
 
-  const handleSearch = (term: string) => {
-    setSearchTerm(term.toLowerCase());
+  // Cập nhật hàm handleSearch để chấp nhận cả string và number
+  const handleSearch = (term: string | number) => {
+    const searchValue = term.toString().toLowerCase(); // Chuyển số thành chuỗi
+    setSearchTerm(searchValue);
   };
 
   const filteredRows = rows.filter((row) =>
@@ -113,7 +115,7 @@ const BookedUser = () => {
             setIsOpenModal(true);
           }}
         >
-          Thêm người dùng
+          Thêm bãi đỗ xe
         </Button>
       </Box>
 
